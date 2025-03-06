@@ -1,0 +1,92 @@
+#!/bin/bash
+#This is a demo script to practice bash and its commands
+echo "Welcome to the ultimate beginner script. Lets get started!
+
+To check/install a file, press 1
+To play a lil game, press 2
+To create a tar file, press 3
+To run system update, press 4
+To iterate from 1-10, press 5
+To check system info, press 6
+" 
+#DEFINE THE FUNCTIONS FIRST
+#CHECK/INSTALL FILE
+section1 () {
+	read -p "Which file would you like to check for? :  " file
+if [ -e  /usr/bin/$file ]
+then
+       	echo "Yup,$file  is present here"
+else sudo apt update && sudo apt install $file
+	echo "$file has been successfully installed"
+fi
+exit
+}
+#LIL GAME
+section2() {
+	two=2
+echo "Whats your favorite number?"
+read favnum
+sleep 1
+echo "Got it"
+ sleep 1
+ echo "How about your least favorite number?"
+ read leastnum
+mid=$(($favnum + $leastnum))
+mid=$mid
+mid=$(($mid / $two))
+echo "Does that mean that your most meh number is $mid? Lol"
+exit
+}
+#CREATING TAR FILE
+section3 () {
+	read -p "What logfile would you like to turn to tar" log
+for $log in logfiles/t.log
+do tar -czuf $log.tar.gz $log 
+done
+exit
+} 
+#SYSTEM UPDATE
+section4() {
+	echo "Updating system files, please hold on a minute..."
+sudo apt update && sudo apt upgrade
+echo "Thank you for your patronage, please check back again soon"
+exit 
+}
+#ITERATION
+section5() {
+	echo "Iterating from 1-20 in 3, 2, 1..."
+var=-1	
+while [ $var -le 9 ]
+do var=$(($var + 1))
+	echo $var
+	sleep 1
+done
+echo "Iteration complete"
+exit
+}
+#SYSTEM INFO
+section6() {
+	echo "The owner of this system and the above files is $USER"
+echo "The shell in use is $SHELL as at $(date)"
+exit
+}
+#THE MAIN SCRIPT
+read prompt
+if [[ "$prompt" == "1" ]]; then
+       	section1
+elif [[ "$prompt" == "2" ]] ; then 
+	section2
+elif [[ "$prompt" == "3" ]] ; then 
+	section3
+elif [[ "$prompt" == "4" ]] ; then
+       	section4
+elif [[ "$prompt" == "5" ]] ; then
+       	section5
+elif [[ "$prompt" == "6" ]] ; then 
+	section6
+else
+	echo "Invalid input. Try again"
+	exit
+fi	
+
+
