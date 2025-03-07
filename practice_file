@@ -4,10 +4,9 @@ echo "Welcome to the ultimate beginner script. Lets get started!
 
 To check/install a file, press 1
 To play a lil game, press 2
-To create a tar file, press 3
-To run system update, press 4
-To iterate from 1-10, press 5
-To check system info, press 6
+To run system update, press 3
+To iterate from 1-10, press 4
+To check system info, press 5
 " 
 #DEFINE THE FUNCTIONS FIRST
 #CHECK/INSTALL FILE
@@ -37,23 +36,15 @@ mid=$(($mid / $two))
 echo "Does that mean that your most meh number is $mid? Lol"
 exit
 }
-#CREATING TAR FILE
-section3 () {
-	read -p "What logfile would you like to turn to tar" log
-for $log in logfiles/t.log
-do tar -czuf $log.tar.gz $log 
-done
-exit
-} 
 #SYSTEM UPDATE
-section4() {
+section3() {
 	echo "Updating system files, please hold on a minute..."
 sudo apt update && sudo apt upgrade
 echo "Thank you for your patronage, please check back again soon"
 exit 
 }
 #ITERATION
-section5() {
+section4() {
 	echo "Iterating from 1-20 in 3, 2, 1..."
 var=-1	
 while [ $var -le 9 ]
@@ -65,7 +56,7 @@ echo "Iteration complete"
 exit
 }
 #SYSTEM INFO
-section6() {
+section5() {
 	echo "The owner of this system and the above files is $USER"
 echo "The shell in use is $SHELL as at $(date)"
 exit
@@ -88,5 +79,4 @@ else
 	echo "Invalid input. Try again"
 	exit
 fi	
-
-
+echo "This is a test lol"
